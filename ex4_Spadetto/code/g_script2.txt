@@ -1,0 +1,108 @@
+
+set terminal pngcairo size 1280, 960 background rgb 'grey'
+
+set output 'file.png'
+
+
+
+set key default
+set key  t
+set key  l
+
+set logscale x
+set logscale y
+
+set key font ",8"
+set key spacing 0.9
+
+set grid y
+set grid x
+
+f0(x) = exp(a0*log(x) + b0)
+f1(x) = exp(a1*log(x) + b1)
+f2(x) = exp(a2*log(x) + b2)
+f3(x) = exp(a3*log(x) + b3)
+f4(x) = exp(a4*log(x) + b4)
+
+fit f0(x) './out/optn/matmul.txt' u 1:2 via a0,b0
+fit f1(x) './out/optn/matmul1.txt' u 1:2 via a1,b1
+fit f2(x) './out/optn/matmul2.txt' u 1:2 via a2,b2
+fit f3(x) './out/optn/matmul3.txt' u 1:2 via a3,b3
+fit f4(x)'./out/optn/matmul4.txt' u 1:2 via a4,b4
+
+set multiplot layout 2,2
+
+set title "no compiler optimization"
+set ylabel "T(N) [s]"
+set xlabel "N"
+
+plot './out/optn/matmul.txt' u 1:2 t "M" pt 7 lc rgb 'red',\
+  './out/optn/matmul1.txt' u 1:2 t "M1"  pt 7 lc rgb 'green',\
+  './out/optn/matmul2.txt' u 1:2 t "M2"  pt 7 lc rgb 'violet',\
+  './out/optn/matmul3.txt' u 1:2 t "M3"  pt 7 lc rgb 'blue',\
+  './out/optn/matmul4.txt' u 1:2 t "M4"  pt 7 lc rgb 'yellow',\
+   f0(x) t sprintf("M(x) a=%.2f b=%.2f  ", a0, b0) lc rgb 'red',\
+   f1(x) t sprintf("M1(x) a=%.2f b=%.2f  ", a1, b1) lc rgb 'green',\
+   f2(x) t sprintf("M2(x) a=%.2f b=%.2f  ", a2, b2) lc rgb 'violet',\
+   f3(x) t sprintf("M3(x) a=%.2f b=%.2f  ", a3, b3) lc rgb 'blue',\
+   f4(x) t sprintf("M4(x) a=%.2f b=%.2f  ", a4, b4) lc rgb 'yellow' 
+
+fit f0(x) './out/opt1/matmul.txt' u 1:2 via a0,b0
+fit f1(x) './out/opt1/matmul1.txt' u 1:2 via a1,b1
+fit f2(x) './out/opt1/matmul2.txt' u 1:2 via a2,b2
+fit f3(x) './out/opt1/matmul3.txt' u 1:2 via a3,b3
+fit f4(x)'./out/opt1/matmul4.txt' u 1:2 via a4,b4
+
+set title "-O1 compiler optimization"
+
+
+plot './out/opt1/matmul.txt' u 1:2 t "M" pt 7 lc rgb 'red',\
+  './out/opt1/matmul1.txt' u 1:2 t "M1"  pt 7 lc rgb 'green',\
+  './out/opt1/matmul2.txt' u 1:2 t "M2"  pt 7 lc rgb 'violet',\
+  './out/opt1/matmul3.txt' u 1:2 t "M3"  pt 7 lc rgb 'blue',\
+  './out/opt1/matmul4.txt' u 1:2 t "M4"  pt 7 lc rgb 'yellow',\
+   f0(x) t sprintf("M(x) a=%.2f b=%.2f  ", a0, b0) lc rgb 'red',\
+   f1(x) t sprintf("M1(x) a=%.2f b=%.2f  ", a1, b1) lc rgb 'green',\
+   f2(x) t sprintf("M2(x) a=%.2f b=%.2f  ", a2, b2) lc rgb 'violet',\
+   f3(x) t sprintf("M3(x) a=%.2f b=%.2f  ", a3, b3) lc rgb 'blue',\
+   f4(x) t sprintf("M4(x) a=%.2f b=%.2f  ", a4, b4) lc rgb 'yellow' 
+
+fit f0(x) './out/opt2/matmul.txt' u 1:2 via a0,b0
+fit f1(x) './out/opt2/matmul1.txt' u 1:2 via a1,b1
+fit f2(x) './out/opt2/matmul2.txt' u 1:2 via a2,b2
+fit f3(x) './out/opt2/matmul3.txt' u 1:2 via a3,b3
+fit f4(x)'./out/opt2/matmul4.txt' u 1:2 via a4,b4
+
+set title "-O2 compiler optimization"
+
+plot './out/opt2/matmul.txt' u 1:2 t "M" pt 7 lc rgb 'red',\
+  './out/opt2/matmul1.txt' u 1:2 t "M1"  pt 7 lc rgb 'green',\
+  './out/opt2/matmul2.txt' u 1:2 t "M2"  pt 7 lc rgb 'violet',\
+  './out/opt2/matmul3.txt' u 1:2 t "M3"  pt 7 lc rgb 'blue',\
+  './out/opt2/matmul4.txt' u 1:2 t "M4"  pt 7 lc rgb 'yellow',\
+   f0(x) t sprintf("M(x) a=%.2f b=%.2f  ", a0, b0) lc rgb 'red',\
+   f1(x) t sprintf("M1(x) a=%.2f b=%.2f  ", a1, b1) lc rgb 'green',\
+   f2(x) t sprintf("M2(x) a=%.2f b=%.2f  ", a2, b2) lc rgb 'violet',\
+   f3(x) t sprintf("M3(x) a=%.2f b=%.2f  ", a3, b3) lc rgb 'blue',\
+   f4(x) t sprintf("M4(x) a=%.2f b=%.2f  ", a4, b4) lc rgb 'yellow'
+
+fit f0(x) './out/opt3/matmul.txt' u 1:2 via a0,b0
+fit f1(x) './out/opt3/matmul1.txt' u 1:2 via a1,b1
+fit f2(x) './out/opt3/matmul2.txt' u 1:2 via a2,b2
+fit f3(x) './out/opt3/matmul3.txt' u 1:2 via a3,b3
+fit f4(x)'./out/opt3/matmul4.txt' u 1:2 via a4,b4
+
+set title "-O3 compiler optimization"
+ 
+plot './out/opt3/matmul.txt' u 1:2 t "M" pt 7 lc rgb 'red',\
+  './out/opt3/matmul1.txt' u 1:2 t "M1"  pt 7 lc rgb 'green',\
+  './out/opt3/matmul2.txt' u 1:2 t "M2"  pt 7 lc rgb 'violet',\
+  './out/opt3/matmul3.txt' u 1:2 t "M3"  pt 7 lc rgb 'blue',\
+  './out/opt3/matmul4.txt' u 1:2 t "M4"  pt 7 lc rgb 'yellow',\
+   f0(x) t sprintf("M(x) a=%.2f b=%.2f  ", a0, b0) lc rgb 'red',\
+   f1(x) t sprintf("M1(x) a=%.2f b=%.2f  ", a1, b1) lc rgb 'green',\
+   f2(x) t sprintf("M2(x) a=%.2f b=%.2f  ", a2, b2) lc rgb 'violet',\
+   f3(x) t sprintf("M3(x) a=%.2f b=%.2f  ", a3, b3) lc rgb 'blue',\
+   f4(x) t sprintf("M4(x) a=%.2f b=%.2f  ", a4, b4) lc rgb 'yellow' \
+
+

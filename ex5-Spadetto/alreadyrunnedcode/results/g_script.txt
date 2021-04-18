@@ -1,0 +1,36 @@
+set terminal pngcairo size 2560, 960 background rgb 'grey'
+set output 'avg.png'
+set grid x
+set grid y
+
+set key box width 2 height 2.5 opaque
+
+set ylabel "P(s)"
+set xlabel "s"
+f(x)= a*x**b*exp(-c*x**d)
+
+set multiplot layout 1,2
+
+set title "Normalized Spacing Probability Distribution for Hermitian Matrices"
+fit f(x) 'densityh.txt' via a,b,c,d
+plot 'densityh.txt' pt 7 ps 0.5 lc rgb "red" t "NS distr. exp.", f(x) lc rgb "blue" t "P(s)"
+
+set title "Normalized Spacing Probability Distribution for Diagonal Matrices"
+
+fit f(x) 'densityd.txt' via a,b,c,d
+plot 'densityd.txt' pt 7 ps 0.5 lc rgb "red" t "NS distr. exp.", f(x) lc rgb "blue" t "P(s)"
+
+unset multiplot
+
+set terminal pngcairo size 1280, 960 background rgb 'grey'
+set title "Moving Average Normalized Spacing Distribution"
+set output 'mixed.png'
+set multiplot layout 2,2
+set title "10 periods"
+plot 'prd11.txt' with lines lc rgb "red" t "diagonal matrices", 'prd12.txt' with lines lc rgb "blue" t "hermitian matrices"
+set title "50 periods"
+plot 'prd21.txt' with lines lc rgb "red" t "diagonal matrices", 'prd22.txt' with lines lc rgb "blue" t "hermitian matrices"
+set title "100 periods"
+plot 'prd31.txt' with lines lc rgb "red" t "diagonal matrices", 'prd32.txt' with lines lc rgb "blue" t "hermitian matrices"
+set title "150 periods"
+plot 'prd41.txt' with lines lc rgb "red" t "diagonal matrices", 'prd42.txt' with lines lc rgb "blue" t "hermitian matrices"

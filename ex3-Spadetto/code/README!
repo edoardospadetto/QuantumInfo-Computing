@@ -1,0 +1,9 @@
+matmulqic.f90 contains the module to perform the matrix multiplication plus various tools to handle generation and output of matrices in form of a 2d array, 
+debugqic.f90 contains a module where the debug function is declared.
+test3.f90 is the the program where i tested the modules. 
+
+I hope everything is fine. 
+Edoardo
+
+gfortran test3.f90 -o test
+./test
