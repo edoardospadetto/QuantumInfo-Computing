@@ -1,0 +1,38 @@
+
+
+*******************************************************************************
+Tue Dec  1 01:46:50 2020
+
+
+FIT:    data read from 'red_bodies2.txt' u ($2**($1+$3)):4
+        format = x:z
+        #datapoints = 24
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*log(x)+c)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.9214331949e+10   0.00e+00  2.95e+05    1.000000e+00   1.000000e+00   1.000000e+00
+ 246 4.1656242259e-08  -1.87e-03  2.95e-07    3.617852e-08   1.016536e+00   3.367041e-01
+
+After 246 iterations the fit converged.
+final sum of squares of residuals : 4.16562e-08
+rel. change during last iteration : -1.86529e-08
+
+degrees of freedom    (FIT_NDF)                        : 21
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.4538e-05
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.98363e-09
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 3.61785e-08      +/- 2674         (7.392e+12%)
+b               = 1.01654          +/- 0.02222      (2.186%)
+c               = 0.336704         +/- 7.391e+10    (2.195e+13%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b               0.555  1.000 
+c              -1.000 -0.555  1.000 

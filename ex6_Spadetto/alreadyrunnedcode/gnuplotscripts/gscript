@@ -1,0 +1,36 @@
+set term pngcairo size 2560, 960
+set title "a = 5.0, L = 1401, eigenfunctions"
+E(x)= (20/(3.14))**0.25*exp(-10*(x**2))
+
+cnst0 = 1
+cnst1 = -1/sqrt(2)
+cnst2= 0.5/sqrt(2)
+
+cnst3 = 1/(4*sqrt(3))
+
+H0(x)=1
+H1(x)=2*(sqrt(20)*x)
+H2(x)=(-2 + 4*20*x**2)
+H3(x)=- 8*(sqrt(20)*x)**3 + 12*sqrt(20)*x
+set samples 2000
+set output '../plots/a.png'
+
+files = system('ls | grep real | grep 1041 | grep 0.50 ')
+print files
+
+
+
+
+set xrange [-5:5]
+set multiplot layout 2,2
+
+
+
+set xlabel "x"
+set ylabel "Re({/Symbol y})
+
+plot  word(files,1)  t "eigenvector 0" lc rgb "red" pt 7 ps 0.5 , E(x)*H0(x)*cnst0 lc rgb '#000004' # black
+plot  word(files,2)  t "eigenvector 1" lc rgb "red" pt 7 ps 0.5, E(x)*H1(x)*cnst1 lc rgb '#000004' # black
+plot  word(files,3)  t "eigenvector 2" lc rgb "red" pt 7 ps 0.5, E(x)*H2(x)*cnst2 lc rgb '#000004' # black
+plot  word(files,4)  t "eigenvector 3" lc rgb "red" pt 7 ps 0.5, E(x)*H3(x)*cnst3 lc rgb '#000004' # black
+

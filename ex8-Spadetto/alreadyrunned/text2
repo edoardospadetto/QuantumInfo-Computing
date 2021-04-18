@@ -1,0 +1,19 @@
+set term pngcairo 
+set output "init_time.png"
+set xlabel "number of subsystems"
+set ylabel "time"
+f(x) = a*x+b
+g(x) = d*exp(e*x+f)
+set key t c
+
+set key font ",20"
+set lmargin 15
+set bmargin 5
+set xlabel font ",20"
+set ylabel font ",20"
+fit f(x) 'generation2states.txt' u 1:2 via a,b,c
+fit g(x) 'generation2states.txt' u 1:3 via d,e,f
+
+plot 'generation2states.txt' u 1:3 t "non separable state" pt 7 ps 3, 'generation2states.txt' u 1:2 t "separable state" ps 3 pt 7, f(x) t sprintf('%ex+%e',a,b) lw 3, g(x) t sprintf('%eexp(%e*x+%e)',d,e,f) lw 3
+
+

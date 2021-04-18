@@ -1,0 +1,19 @@
+set term pngcairo size 960,640
+set output "time_marginalizeddb2.png"
+set logscale xy
+set xlabel "#iterations"
+set ylabel "time"
+f(x) = a*exp(b*log(x)+c)
+
+set key t c
+
+set key font ",20"
+set lmargin 15
+set bmargin 5
+set xlabel font ",20"
+set ylabel font ",20"
+fit f(x) 'red_bodies2.txt' u ($2**($1+$3)):4 via a,b,c
+
+
+plot 'red_bodies2.txt' u ($2**($1+$3)):4:2 notitle pt 7 ps 2 lc palette, f(x) with lines 
+

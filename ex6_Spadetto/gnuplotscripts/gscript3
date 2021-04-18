@@ -1,0 +1,8 @@
+set term pngcairo size 2560,960
+set output "../plots/time.png"
+f(x) = exp(a*log(x)+b)
+fit f(x) "time.txt" via a,b 
+set xlabel "L"
+set ylabel "time [s]"
+set logscale xy
+plot "time.txt" pt 7 lc "red" ,  f(x) lc rgb "black" t sprintf("a = %f, b= %f", a, b)

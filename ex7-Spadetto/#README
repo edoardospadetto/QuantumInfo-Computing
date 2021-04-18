@@ -1,0 +1,5 @@
+The Code for this exercise can be found in ex7.f90 and tdschrodinger.f90.
+To execute just open a terminal and ./RUNME.sh
+In the alreadyrunnedcode folder you will se the results of calling ./RUNME.sh
+There also a gif of the wave function (file1).
+

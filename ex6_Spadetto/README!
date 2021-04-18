@@ -1,0 +1,4 @@
+Be sure to have a result folder and also a plots folder where you launch the runme.sh .
+Clearly also the gnuplotscripts folder must be present.
+
+runme.sh is a script used to compile, run, and launch gnuplot.

@@ -1,0 +1,26 @@
+
+set term pngcairo size 2560,960 background "gray"
+set output "../plots/score.png"
+set logscale xy 
+set multiplot layout 1,2
+files = system('ls | grep score20_')
+print files
+colors = "'yellow' 'red' 'blue' 'green' 'violet'"
+set xlabel "L"
+set title "Average euclidean distance 20 eigenvalues"
+set ylabel "s_{20}"
+
+plot for [i=1:words(files)] word(files,i) u 1:3  with lines lc "black" notitle, for[i=1:words(files)] word(files,i) u 1:3  pt 7 lc rgb word(colors,i) title sprintf("x = %s", word(files,i)[10:17])
+
+
+files = system('ls | grep score_')
+print files
+colors = "'yellow' 'red' 'blue' 'green' 'violet'"
+set xlabel "L"
+set title "Average euclidean distance 300 eigenvalues"
+set ylabel "s_{300}"
+
+plot for [i=1:words(files)] word(files,i) u 1:3  with lines lc "black" notitle, for[i=1:words(files)] word(files,i) u 1:3  pt 7 lc rgb word(colors,i) title sprintf("x = %s", word(files,i)[8:14])
+
+
+

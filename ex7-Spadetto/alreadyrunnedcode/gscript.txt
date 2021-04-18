@@ -1,0 +1,12 @@
+files = system("ls results")
+set terminal gif animate delay 10
+set output 'file1'
+set xrange [-2:3]
+set yrange[-2:2]
+
+
+do for [i = 1:words(files)]{
+    set arrow from i*0.01,-2 to i*0.01,2 lc black nohead
+    plot sprintf("./results/%s",word(files,i)) t  "re" with lines lc rgb 'red', sprintf("./results/%s",word(files,i)) u 1:3 t  "im" with lines lc rgb 'blue', sprintf("./results/%s",word(files,i)) u 1:($3*$3+$2*$2) t  "PDF" with lines lc rgb 'green', 
+    unset arrow
+}

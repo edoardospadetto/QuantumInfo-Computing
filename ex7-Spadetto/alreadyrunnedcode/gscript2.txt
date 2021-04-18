@@ -1,0 +1,4 @@
+set term pngcairo
+set output "avgpos.png"
+plot 'info2.txt' u 1:($2-$3):($2+$3) with filledcurves fs transpar lc rgb "yellow" t "~x{.7-}±{/Symbol s} ", 'info2.txt' u 1:2 with lines lc black t "~x{.7-}"
+
