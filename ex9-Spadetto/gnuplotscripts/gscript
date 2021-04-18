@@ -1,0 +1,33 @@
+set term pngcairo size 960,650 background rgb "gray"
+set output "result5m1.png"
+
+set multiplot layout 2,2
+set key at 0.9, -1.3
+
+set title "N=3"
+set grid
+set ylabel "e"
+set xlabel "{/Symbol l}"
+fi = system("ls results3")
+plot for [f in fi] sprintf("results3/%s", f) with lines lw 2 t sprintf("e_%s", f[5:5])
+
+set title "N=5"
+set grid
+set ylabel "e"
+set xlabel "{/Symbol l}"
+fi = system("ls results4")
+plot for [f in fi] sprintf("results4/%s", f) with lines lw 2 t sprintf("e_%s", f[5:5]) 
+
+set title "N=8"
+set grid
+set ylabel "e"
+set xlabel "{/Symbol l}"
+fi = system("ls results5")
+plot for [f in fi] sprintf("results5/%s", f) with lines lw 2 t sprintf("e_%s", f[5:5]) 
+
+set title "N=8"
+set grid
+set ylabel "e"
+set xlabel "{/Symbol l}"
+fi = system("ls results8")
+plot for [f in fi] sprintf("results8/%s", f) with lines lw 2 t sprintf("e_%s", f[5:5])  

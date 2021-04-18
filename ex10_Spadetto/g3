@@ -1,0 +1,14 @@
+set term pngcairo size 960,400 background rgb "gray"
+set output "resulttestm1nr.png"
+f(x)= x<=2 ? -1-x*x*0.25 : x>2 ? -x : 1/0 
+
+
+set key 
+set grid
+set ylabel "e^{'}"
+set xlabel "{/Symbol l}"
+
+
+plot "results/data4_10.txt" u 1:2 with lines lw 2 t "N=4, it=9", f(x) lw 2 dt 2 lc rgb "black" t "mf"
+
+
